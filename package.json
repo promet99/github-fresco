@@ -1,0 +1,35 @@
+{
+  "name": "github-fresco",
+  "version": "0.0.1",
+  "description": "Automatic commit and push to make your github contribution green",
+  "bin": "./build/index.js",
+  
+  "scripts": {
+    "go": "tsc && node ./build/index.js"
+  },
+  "author": "promet99@github",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/promet99/github-fresco.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@types/inquirer": "^7.3.2",
+    "cli-progress": "^3.9.0",
+    "commander": "^8.0.0",
+    "commitizen": "^4.2.4",
+    "cz-emoji-conventional": "^1.0.1",
+    "inquirer": "^8.1.1",
+    "shelljs": "^0.8.4"
+  },
+  "devDependencies": {
+    "@types/shelljs": "^0.8.8",
+    "prettier": "2.3.2",
+    "typescript": "^4.3.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-emoji-conventional"
+    }
+  }
+}
