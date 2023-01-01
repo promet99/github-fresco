@@ -1,0 +1,38 @@
+{
+  "name": "github-fresco",
+  "version": "0.0.2",
+  "description": "Automatic commit and push to make your github contribution green",
+  "author": "promet99@github",
+  "license": "ISC",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/promet99/github-fresco.git"
+  },
+  "scripts": {
+    "commit": "pnpm cz",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "tsc": "turbo run tsc",
+    "start": "turbo run start",
+    "start:cli": "turbo build --filter=cli && pnpm --filter \"cli\" start",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "commitizen": "^4.2.6",
+    "cz-emoji-conventional": "^1.0.1",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*",
+    "prettier": "latest",
+    "turbo": "^1.6.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-emoji-conventional"
+    }
+  }
+}

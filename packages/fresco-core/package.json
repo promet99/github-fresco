@@ -1,0 +1,30 @@
+{
+  "name": "fresco-core",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./build/index.js",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "start": "tsc && node ./build/index.js",
+    "lint": "eslint",
+    "tsc": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@types/inquirer": "^7.3.2",
+    "cli-progress": "^3.9.0",
+    "commander": "^8.0.0",
+    "inquirer": "^8.1.1",
+    "shelljs": "^0.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.19",
+    "@types/shelljs": "^0.8.8",
+    "@babel/core": "^7.0.0",
+    "eslint": "7.32.0",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.5.3"
+  }
+}
