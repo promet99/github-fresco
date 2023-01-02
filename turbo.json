@@ -9,6 +9,7 @@
       "outputs": []
     },
     "tsc": {
+      "dependsOn": ["^build"],
       "outputs": []
     },
     "dev": {

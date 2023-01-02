@@ -20,14 +20,33 @@ const init = ({ dirname = DEFAULT_GIT_DIR }: { dirname?: string }): void => {
 const makeSingleCommitAtDate = ({ date }: { date: Date }) => {
   const formattedDate = formatDate(date);
   const commitMsg = "Fnord";
-  // TODO: handle locale
+  const commiterEmail = "email???";
+
   const commitShellCommand = [
+    `set GIT_AUTHOR_DATE="${formattedDate} 09:00:00 +0000"`,
     `set GIT_COMMITTER_DATE="${formattedDate} 09:00:00 +0000"`,
+
+    `set GIT_AUTHOR_EMAIL="${commiterEmail}"`,
+    `set GIT_COMMITTER_EMAIL="${commiterEmail}"`,
+
     "git add .",
     `git commit -am ${commitMsg} --date "${formattedDate} 09:00:00 +0000"`,
   ].join(" && ");
 
   return shell.exec(commitShellCommand);
+};
+
+const removeAllCommitsInCurrentBranch = () => {
+  const revertToInitCommand = [
+    "git update-ref -d HEAD",
+    "git reset --hard",
+  ].join(" && ");
+  return shell.exec(revertToInitCommand);
+};
+
+const commitCountCurrentBranch = () => {
+  const command = ["git rev-list --count HEAD"].join(" && ");
+  return shell.exec(command);
 };
 
 const makeChangeAndmakeCommitsAtDate = ({
@@ -156,4 +175,6 @@ export const gitCommands = {
   pushToOrigin,
   checkOrigin,
   addOrigin,
+  removeAllCommitsInCurrentBranch,
+  commitCountCurrentBranch,
 };

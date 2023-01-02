@@ -73,6 +73,8 @@ const main = async () => {
       });
   }
 
+  const currentBranchCommitCount = gitCommands.commitCountCurrentBranch();
+
   inquirer
     .prompt([
       {
@@ -95,16 +97,31 @@ const main = async () => {
           return isDaysValid || "Should be an integer that is 0 or positive";
         },
       },
+      {
+        type: "confirm",
+        name: "shouldRemoveAllExistingCommits",
+        message: `Current branch has ${currentBranchCommitCount} commits. Would you like to erase all existing commits?`,
+        default: true,
+      },
     ])
     .then((answers) => {
       try {
+        if (answers.shouldRemoveAllExistingCommits) {
+          gitCommands.removeAllCommitsInCurrentBranch();
+        }
+
         gitCommands.fillDateRangeWithCommits({
           startingDate: new Date(answers.startingDate),
           totalDays: parseInt(answers.totalDays),
           dailyCommits: COMMIT_PER_DAY,
         });
         if (isRemoteSet) {
-          gitCommands.pushToOrigin({ force: true });
+          const pushResult = gitCommands.pushToOrigin({ force: true });
+          if (pushResult.code !== 0) {
+            console.error("Failed to push to origin");
+            console.error(pushResult.stderr);
+          }
+
           console.log("Successfully made commits and pushed to origin!");
         }
       } catch (e) {
