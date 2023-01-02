@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# TODO: add 'pretty-quick' to hook:preCommit command
+pnpm hook:preCommit
