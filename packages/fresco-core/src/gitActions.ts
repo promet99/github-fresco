@@ -1,13 +1,13 @@
 import shell from "shelljs";
 
-import { changeDateBy, formatDate } from "./dateUtil";
+import { changeDateBy, formatDate } from "./dateUtil.js";
 import {
   STARTING_DATE,
   TOTAL_DAYS,
   COMMIT_PER_DAY,
   DEFAULT_GIT_DIR,
-} from "./constants";
-import { moveToDir, writeToFile } from "./shellActions";
+} from "./constants.js";
+import { moveToDir, writeToFile } from "./shellActions.js";
 
 const isGitInstalled = (): boolean => !!shell.which("git");
 

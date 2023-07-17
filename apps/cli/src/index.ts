@@ -5,7 +5,7 @@
 
 import inquirer from "inquirer";
 
-import { Shell, gitCommands, COMMIT_PER_DAY, moveToDir } from "fresco-core";
+import { Shell, gitCommands, COMMIT_PER_DAY, moveToDir, GP } from "fresco-core";
 
 const GIT_DIR = { dirname: "github-fresco" };
 
@@ -113,7 +113,10 @@ const main = async () => {
         gitCommands.fillDateRangeWithCommits({
           startingDate: new Date(answers.startingDate),
           totalDays: parseInt(answers.totalDays),
+          // ? Chagne line below to make a painting.
+          // ? (start from the first Sunday of a year. (2016-01-03))
           dailyCommits: COMMIT_PER_DAY,
+          // dailyCommits: GP,
         });
         if (isRemoteSet) {
           const pushResult = gitCommands.pushToOrigin({ force: true });

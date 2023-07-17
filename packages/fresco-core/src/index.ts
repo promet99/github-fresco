@@ -9,6 +9,7 @@ shell.config.silent = true;
 
 export const Shell = shell;
 
-export * from "./gitActions";
-export * from "./constants";
-export * from "./shellActions";
+export * from "./gitActions.js";
+export * from "./constants.js";
+export * from "./shellActions.js";
+export { GP } from "./shapes.js";
